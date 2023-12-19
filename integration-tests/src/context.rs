@@ -1,6 +1,10 @@
 #![cfg(test)]
 
 use async_trait::async_trait;
+use helper_contract::{
+    api::HelperApiIntegration,
+    interface::{HelperContract, HELPER_CONTRACT},
+};
 use integration_utils::integration_contract::IntegrationContract;
 use model::api::ContractApiIntegration;
 use near_workspaces::Account;
@@ -15,6 +19,7 @@ pub trait IntegrationContext {
     async fn alice(&mut self) -> anyhow::Result<Account>;
     async fn fee(&mut self) -> anyhow::Result<Account>;
     fn my_contract(&self) -> MyContract;
+    fn helper(&self) -> HelperContract;
 }
 
 #[async_trait]
@@ -34,12 +39,17 @@ impl IntegrationContext for Context {
     fn my_contract(&self) -> MyContract {
         MyContract::with_contract(&self.contracts[MY_CONTRACT])
     }
+
+    fn helper(&self) -> HelperContract {
+        HelperContract::with_contract(&self.contracts[HELPER_CONTRACT])
+    }
 }
 
 pub(crate) async fn prepare_contract() -> anyhow::Result<Context> {
-    let context = Context::new(&[MY_CONTRACT], "build-integration".into()).await?;
+    let context = Context::new(&[MY_CONTRACT, HELPER_CONTRACT], "build-integration".into()).await?;
 
     context.my_contract().new().call().await?;
+    context.helper().new().call().await?;
 
     Ok(context)
 }

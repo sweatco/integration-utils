@@ -26,4 +26,5 @@ mutants = { workspace = true }
 model = { workspace = true }
 integration-utils = { workspace = true }
 near-workspaces = { workspace = true }
+helper-contract = { workspace = true }
 

@@ -1,5 +1,6 @@
 #![cfg(test)]
 
+use helper_contract::api::HelperApiIntegration;
 use integration_utils::{panic_finder::PanicFinder, parse_result::ParseResult};
 use model::api::ContractApiIntegration;
 
@@ -25,6 +26,8 @@ async fn happy_flow() -> anyhow::Result<()> {
     let data = context.my_contract().data().call().await?;
 
     assert_eq!(vec!["a".to_string()], data);
+
+    dbg!(context.helper().block_timestamp_ms().call().await?);
 
     Ok(())
 }

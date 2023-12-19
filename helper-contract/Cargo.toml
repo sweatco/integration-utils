@@ -1,0 +1,24 @@
+[package]
+name = "helper-contract"
+version = "1.0.0"
+authors = ["Sweat Economy"]
+edition = "2021"
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+
+[features]
+default = []
+integration-test = []
+
+[dependencies]
+near-sdk = { workspace = true }
+near-contract-standards = { workspace = true }
+integration-trait = { workspace = true }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+integration-utils = { workspace = true }
+near-workspaces = { workspace = true }
+
+[build-dependencies]
+anyhow = { workspace = true }

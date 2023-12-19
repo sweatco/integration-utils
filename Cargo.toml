@@ -3,7 +3,7 @@
 resolver = "2"
 
 default-members = ["contract"]
-members = ["model", "contract", "integration-tests", "integration-utils", "integration-trait", "integration-trait-tests"]
+members = ["model", "contract", "helper-contract", "integration-tests", "integration-utils", "integration-trait", "integration-trait-tests"]
 
 [workspace.dependencies]
 anyhow = "1.0.75"
@@ -21,6 +21,7 @@ tokio = "1.28.2"
 
 integration-trait = { path = "integration-trait" }
 integration-utils = { path = "integration-utils" }
+helper-contract = { path = "helper-contract" }
 
 model = { path = "model" }
 

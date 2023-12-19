@@ -8,6 +8,9 @@ build: ##@Build Build the library.
 build-integration: ##@Build Build the contract for integration tests.
 	./scripts/build-integration.sh
 
+helper: ##@Build Build the helper contract.
+	./scripts/build-helper.sh
+
 fmt: ##@Chores Format the code using rustfmt nightly.
 	cargo +nightly fmt --all
 

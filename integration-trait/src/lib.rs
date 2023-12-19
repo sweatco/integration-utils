@@ -31,7 +31,6 @@ pub fn make_integration_version(_args: TokenStream, stream: TokenStream) -> Toke
         #input
 
         #[cfg(not(target_arch = "wasm32"))]
-        #[async_trait::async_trait]
         pub trait #async_trait_name {
             #(#async_methods)*
         }
